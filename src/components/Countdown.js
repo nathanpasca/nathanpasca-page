@@ -4,45 +4,46 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
 const Countdown = () => {
-	const calculateTimeLeft = () => {
-		const oneYearFromNow = new Date();
-		oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+	const second = 1000,
+		minute = second * 60,
+		hour = minute * 60,
+		day = hour * 24;
 
-		const difference = oneYearFromNow - new Date();
-		let timeLeft = {};
-
-		if (difference > 0) {
-			timeLeft = {
-				days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-				hours: Math.floor(
-					(difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-				),
-				minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-				seconds: Math.floor((difference % (1000 * 60)) / 1000),
-			};
-		}
-
-		return timeLeft;
-	};
-
-	const [timeLeft, setTimeLeft] = useState({});
+	const [timeLeft, setTimeLeft] = useState({
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+	});
 
 	useEffect(() => {
-		const timer = setInterval(() => {
-			setTimeLeft(calculateTimeLeft());
+		const today = new Date();
+		const dayMonth = "02/11"; // Set the birthday month and day to 11 February
+		const yyyy = 2025; // Set the birthday year to 2025
+
+		const countDown = new Date(`${dayMonth}/${yyyy}`).getTime();
+
+		const interval = setInterval(() => {
+			const now = new Date().getTime();
+			const distance = countDown - now;
+
+			setTimeLeft({
+				days: Math.floor(distance / day),
+				hours: Math.floor((distance % day) / hour),
+				minutes: Math.floor((distance % hour) / minute),
+				seconds: Math.floor((distance % minute) / second),
+			});
+
+			// do something later when date is reached
+			if (distance < 0) {
+				clearInterval(interval);
+			}
 		}, 1000);
 
-		return () => clearInterval(timer);
-	}, []); // Empty dependency array to run only once when the component mounts
+		return () => clearInterval(interval);
+	}, []);
 
-	if (
-		!timeLeft.days &&
-		!timeLeft.hours &&
-		!timeLeft.minutes &&
-		!timeLeft.seconds
-	) {
-		return null; // Don't render if countdown is complete
-	}
+	console.log(timeLeft);
 
 	return (
 		<motion.div
