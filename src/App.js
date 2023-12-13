@@ -4,6 +4,7 @@ import React from "react";
 import Banner from "./components/Banner";
 import Header from "./components/Header";
 import About from "./components/About";
+import Countdown from "./components/Countdown";
 
 const App = () => {
 	return (
@@ -11,6 +12,7 @@ const App = () => {
 			<Header />
 			<Banner />
 			<About />
+			<Countdown />
 			<div className="h-[4000px]"></div>
 		</div>
 	);
