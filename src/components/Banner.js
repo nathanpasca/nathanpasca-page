@@ -2,7 +2,6 @@ import React from "react";
 
 import Image from "../assets/1-removebg-preview.png";
 
-import { FaGithub, FaYoutube, FaDribble } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
@@ -33,7 +32,7 @@ const Banner = () => {
 								sequence={[
 									"Web Developer",
 									2000,
-									"Shitposter",
+									"Meme Retweeter",
 									2000,
 									"Cat Lover",
 									2000,
@@ -63,7 +62,15 @@ const Banner = () => {
 							ex labore ex duis.
 						</motion.p>
 						<div className="flex max-w-max gap-x-6 items-center mb-12 mx-auto lg:mx-0">
-							<button className="btn btn-lg">Message me</button>
+							<div className=" w-full flex items-center justify-center">
+								<a
+									href="#_"
+									className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
+									<span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
+									<span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+									<span className="relative text-white">Contact me</span>
+								</a>
+							</div>
 						</div>
 					</div>
 					<div className="hidden lg:flex flex-1 max-w-[320px] lg:max-w-[482px]">
